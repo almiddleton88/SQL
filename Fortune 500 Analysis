@@ -60,37 +60,37 @@ VALUES
 SELECT *
 FROM fortune_companies;
 
--- Which Retail companies have healthcare benefits, and at least 5 weeks of maternity Leave?
+-- 1. Which Retail companies have healthcare benefits, and at least 5 weeks of maternity Leave?
 SELECT company_name, industry, healthcare_benefits, maternity_leave_weeks
 FROM fortune_companies
 WHERE industry = "Retail"
 AND healthcare_benefits=1
 AND maternity_leave_weeks >= 5;
 
--- Which company in the Technology industry has the most revenue, and what's their revenue? 
+-- 2. Which company in the Technology industry has the most revenue, and what's their revenue? 
 SELECT company_name, MAX(revenue)
 FROM fortune_companies
 WHERE industry = 'Technology';
 
--- Double check your previous query by listing all Technology companies, and their revenue in descending order. 
+-- 3. Double check your previous query by listing all Technology companies, and their revenue in descending order. 
 SELECT company_name, revenue
 FROM fortune_companies
 WHERE industry = 'Technology'
 ORDER BY revenue DESC;
 
--- What is the company with the lowest revenue for each industry?
+-- 4. What is the company with the lowest revenue for each industry?
 SELECT company_name, industry, MIN(revenue)
 FROM fortune_companies
 GROUP BY industry
 ORDER BY company_name ASC;
 
--- Which industries have an average revenue greater than $200 Billion, and what are their avg revenues?
+-- 5. Which industries have an average revenue greater than $200 Billion, and what are their avg revenues?
 SELECT industry, ROUND(AVG(revenue),1) as avg_revenue_billions
 FROM fortune_companies
 GROUP BY industry
 HAVING avg_revenue_billions>200;
 
--- Assign all the companies in the Telecommunications industry as "Yes", "Maybe", or "No" based on the maternity leave offered. 
+-- 6. Assign all the companies in the Telecommunications industry as "Yes", "Maybe", or "No" based on the maternity leave offered. 
 SELECT company_name, industry, maternity_leave_weeks,
 CASE WHEN maternity_leave_weeks >= 10 THEN "Yes"
 WHEN maternity_leave_weeks >= 8 THEN "Maybe"
