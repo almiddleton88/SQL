@@ -66,8 +66,7 @@ ORDER BY number_of_songs DESC;
 
 SELECT id, artist_name, COUNT(track_name) AS number_of_songs, AVG (energy) AS avg_energy
 FROM "Spotifydata"
-WHERE artist_name = 'Doja Cat'
-OR artist_name = 'Bad Bunny'
+WHERE artist_name IN ('Doja Cat','Bad Bunny')
 GROUP BY artist_name
 ORDER BY avg_energy DESC;
 
