@@ -127,4 +127,14 @@ Feb.price,
 Feb.orderdate,
 Feb.location
 
+--15. February revenue per product.
+SELECT 
+product
+,ROUND(SUM(quantity)*price,2) as revenue 
+FROM "FebSales"
+WHERE product <> ''
+AND product <> 'Product'
+GROUP BY product
+ORDER BY ROUND(SUM(quantity)*price,2) DESC
+
 
